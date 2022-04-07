@@ -42,8 +42,9 @@ namespace LeagueScores.Service
 
                 int score1Index = row[0].IndexOf(score1);
                 int score2Index = row[1].IndexOf(score2);
-                team1 = row[0].Remove(score1Index);
-                team2 = row[1].Remove(score2Index);
+                team1 = row[0].Remove(score1Index).Trim();
+                team2 = row[1].Remove(score2Index).Trim();
+
 
                 if (int.Parse(score1) > int.Parse(score2))
                 {
@@ -115,9 +116,8 @@ namespace LeagueScores.Service
             
                     
             }
-            var sortedLog = Log.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
 
-            return sortedLog;
+            return Log;
         }
 
         public void WriteScoreResults(Dictionary<string, int> log)
