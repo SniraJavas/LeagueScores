@@ -1,5 +1,4 @@
-﻿using LeagueScores.IService;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace LeagueScores.Service
 {
-    public class FileService : IFileService
+    public class FileService
     {
-        public Dictionary<string, int> ReadFile(string path)
+        public Dictionary<string, int> ReadScoreFile(string path)
         {
             StreamReader sr = new StreamReader(path);
             string line;
@@ -26,8 +25,6 @@ namespace LeagueScores.Service
                 int numericValue; 
                 for(var i = teamAndScore1.Length-1; i > 0; i--)
                 {
-                    Console.WriteLine(teamAndScore1[i]);
-                    Console.WriteLine("index "+ i);
                     if (teamAndScore1[i] ==' ') {
                         break;
                     }
@@ -36,8 +33,6 @@ namespace LeagueScores.Service
 
                 for (var i = teamAndScore2.Length - 1; i > 0; i--)
                 {
-                    Console.WriteLine(teamAndScore2[i]);
-                    Console.WriteLine("index " + i);
                     if (teamAndScore2[i] == ' ')
                     {
                         break;
@@ -64,6 +59,11 @@ namespace LeagueScores.Service
                         Log.Add(team1, 3);
 
                     }
+
+                    if (!Log.ContainsKey(team2)) {
+                        Log.Add(team2, 0);
+                    }
+
                 }
                 else if (int.Parse(score1) == int.Parse(score2))
                 {
@@ -105,19 +105,28 @@ namespace LeagueScores.Service
                         Log.Add(team2, 3);
 
                     }
+
+                    if (!Log.ContainsKey(team1))
+                    {
+                        Log.Add(team1, 0);
+                    }
                 }
 
             
                     
             }
-            var sortedLog = Log.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value); ;
+            var sortedLog = Log.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
 
             return sortedLog;
         }
 
-        void IFileService.WriteFile(Dictionary<string, int> log)
+        public void WriteScoreResults(Dictionary<string, int> log)
         {
-            throw new NotImplementedException();
+            int count = 1;
+            foreach (var item in log) {
+                Console.WriteLine("{0}. {1} , {2} pts", count, item.Key.Trim(), item.Value);
+                count++;
+            }
         }
 
 

@@ -7,7 +7,8 @@ Console.Write("Please enter the file Path : ");
 string path = Console.ReadLine();
 if (path != "")
 {
-    Dictionary<string,int> data =fileService.ReadFile(path);
+    Dictionary<string,int> data =fileService.ReadScoreFile(path);
+    fileService.WriteScoreResults(data);
 
 }
 else {
