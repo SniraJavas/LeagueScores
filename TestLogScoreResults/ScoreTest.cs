@@ -11,7 +11,7 @@ namespace LogScoreTests
     {
 
 
-        string currentDir = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location).Replace("\\bin\\Debug\\net6.0","\\Data\\DrawScores.csv");
+        string currentDir = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location).Replace("\\bin\\Debug\\net6.0","\\Data\\");
 
 
         [TestMethod]
@@ -19,7 +19,7 @@ namespace LogScoreTests
         {
             //arrange
             Program program = new Program();
-            string path = "C:\\Users\\SinikiweJumba\\source\\repos\\TestLogCalculator\\Data\\WinBayern.csv";
+            string path = currentDir +"WinBayern.csv";
 
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
@@ -41,7 +41,7 @@ namespace LogScoreTests
         {
             //arrange
             Program program = new Program();
-            string path = "C:\\Users\\SinikiweJumba\\source\\repos\\TestLogCalculator\\Data\\WinBayern.csv";
+            string path = currentDir+"WinBayern.csv";
 
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
@@ -63,7 +63,7 @@ namespace LogScoreTests
         {
             //arrange
             Program program = new Program();
-            string path = "C:\\Users\\SinikiweJumba\\source\\repos\\TestLogCalculator\\Data\\DrawScores.csv";
+            string path = currentDir+ "DrawScores.csv";
 
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
@@ -85,7 +85,7 @@ namespace LogScoreTests
         {
             //arrange
             Program program = new Program();
-            string path = "C:\\Users\\SinikiweJumba\\source\\repos\\TestLogCalculator\\Data\\OrderByNames.csv";
+            string path = currentDir+"OrderByNames.csv";
 
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
