@@ -14,5 +14,13 @@ namespace LeagueScores.Helper
 
             return sortedLog;
         }
+
+        public Dictionary<string, int> OrderByTeamNamesDesc(Dictionary<string, int> data)
+        {
+
+            var sortedLog = data.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+
+            return sortedLog;
+        }
     }
 }
