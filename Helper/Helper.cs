@@ -8,19 +8,13 @@ namespace LeagueScores.Helper
 {
     public class Helper
     {
-        public Dictionary<string, int> OrderByPointsDesc(Dictionary<string,int> data) {
+        public Dictionary<string, int> OrderByPointsAndNamesDesc(Dictionary<string,int> data) {
 
-            var sortedLog = data.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
-
-            return sortedLog;
-        }
-
-        public Dictionary<string, int> OrderByTeamNamesDesc(Dictionary<string, int> data)
-        {
-
-            var sortedLog = data.OrderByDescending(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+            var sortedLog = data.OrderByDescending(x => x.Value).ThenBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
 
             return sortedLog;
         }
+
+       
     }
 }
